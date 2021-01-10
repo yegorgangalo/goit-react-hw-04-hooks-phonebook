@@ -1,0 +1,28 @@
+.title {
+  margin-bottom: 10px;
+}
+
+.iconButtonCloseModal {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.iconButtonOpenModal {
+  border-radius: 4px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  background-color: rgb(230, 230, 230);
+  border: 2px solid rgb(182, 182, 182);
+  font-weight: 700;
+  box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.iconButtonOpenModal:hover,
+.iconButtonOpenModal:focus {
+  background-color: #fff;
+  border: 2px solid rgb(182, 182, 182);
+}
