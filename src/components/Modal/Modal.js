@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import s from './Modal.module.css';
 
-const modalRoot = document.querySelector('#modal-root');
-
 function Modal ({onClose, children}) {
     useEffect(() => {
         const keydownCloseModal = ({ code }) => { code === "Escape" && onClose() }
@@ -18,7 +16,7 @@ function Modal ({onClose, children}) {
         <div className={s.backdrop} onClick={backdropCloseModal}>
             <div className={s.content}>{children}</div>
         </div>
-    , modalRoot)
+    , document.querySelector('#modal-root'))
 }
 
 Modal.propTypes = {
