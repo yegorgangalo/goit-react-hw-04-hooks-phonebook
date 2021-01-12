@@ -1,31 +1,14 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import s from './ContactList.module.css';
 import ContactItem from '../ContactItem';
 
-class ContactList extends PureComponent {
-    static propTypes = {
-      filter: PropTypes.string.isRequired,
-      contacts: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string.isRequired,
-          name: PropTypes.string.isRequired,
-          number: PropTypes.string.isRequired,
-          experience: PropTypes.string.isRequired,
-          skills: PropTypes.arrayOf(PropTypes.string.isRequired),
-      })),
-    }
+function ContactList ({contacts, filter}) {
 
-    filterContacts = () => {
-        const {contacts, filter} = this.props;
-        return contacts.filter(contact =>
+        const filteredContacts = contacts.filter(contact =>
            Object.values(contact)
             .some(val => val.toString().toLowerCase().includes(filter))
         );
-    }
-
-    render() {
-        const filteredContacts = this.filterContacts();
 
         return (
           <ul>
@@ -42,7 +25,18 @@ class ContactList extends PureComponent {
             )}
           </ul>
         )
-    }
+}
+
+ContactList.propTypes = {
+  filter: PropTypes.string.isRequired,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+      experience: PropTypes.string.isRequired,
+      skills: PropTypes.arrayOf(PropTypes.string.isRequired),
+  })),
 }
 
 export default ContactList;

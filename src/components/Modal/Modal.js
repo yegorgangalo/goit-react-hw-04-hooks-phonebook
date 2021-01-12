@@ -1,35 +1,24 @@
-import React, { PureComponent } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import s from './Modal.module.css';
 
 const modalRoot = document.querySelector('#modal-root');
 
-class Modal extends PureComponent {
+function Modal ({onClose, children}) {
+    useEffect(() => {
+        const keydownCloseModal = ({ code }) => { code === "Escape" && onClose() }
+        window.addEventListener('keydown', keydownCloseModal);
+        return () => window.removeEventListener('keydown', keydownCloseModal);
+    }, [onClose])
 
-    componentDidMount() {
-        window.addEventListener('keydown', this.keydownCloseModal);
-    }
+    const backdropCloseModal = ({ target, currentTarget }) => { target === currentTarget  && onClose() }
 
-    componentWillUnmount() {
-        window.removeEventListener('keydown', this.keydownCloseModal);
-    }
-
-    keydownCloseModal = ({ code }) => {
-        code === "Escape" && this.props.onClose();
-    }
-
-    backdropCloseModal = ({ target, currentTarget }) => {
-        target === currentTarget  && this.props.onClose();
-    }
-
-    render() {
-        return createPortal(
-            <div className={s.backdrop} onClick={this.backdropCloseModal}>
-                <div className={s.content}>{this.props.children}</div>
-            </div>
-        , modalRoot)
-    }
+    return createPortal(
+        <div className={s.backdrop} onClick={backdropCloseModal}>
+            <div className={s.content}>{children}</div>
+        </div>
+    , modalRoot)
 }
 
 Modal.propTypes = {
