@@ -20,7 +20,7 @@ function App () {
     //     {id: 'id-6', name: 'Ed Clirence', number: '217-01-46', experience: 'middle', skills: ['HTML', 'CSS', 'JS']},
     //   ]
 
-    const [contacts, setContacts] = useLocalStorage('contacts', []);
+    const [contacts, setContacts] = useLocalStorage('contacts', [], ()=>setShowModal(!showModal));
     const [filter, setFilter] = useState('');
     const [showModal, setShowModal] = useState(false);
 
