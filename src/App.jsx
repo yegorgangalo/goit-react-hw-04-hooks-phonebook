@@ -1,4 +1,3 @@
-// import React, { PureComponent } from 'react';
 import { useState } from 'react';
 import { useLocalStorage } from './hooks';
 import Context from './components/Context';

@@ -1,12 +1,9 @@
 .contactForm {
   box-sizing: border-box;
-  /* width: 50%; */
   width: 100%;
   padding: 20px;
-  /* margin-bottom: 20px; */
   display: flex;
   flex-direction: column;
-  /* border: 1px solid rgb(68, 68, 68); */
 }
 
 .labelBlock {
